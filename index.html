@@ -1,23 +1,69 @@
 <h1 id="backendlessuserdocumentation">Backendless User Documentation</h1>
 
-<h2 id="namingconvention">Naming Convention</h2>
+<h2 id="namingfilesanddirectories">Naming Files and Directories</h2>
 
 <h3 id="backendlessfunctionsanddirectories">Backendless Functions and Directories</h3>
 
 <ul>
-<li>Must be a-z or A-Z or 0-9.</li>
+<li>Name can only contain the following charecters: <code>a-z or A-Z or 0-9</code>.</li>
 
-<li>Cannot contain space or any symbol.</li>
+<li>The prescribed naming convention is Camel Casing. Example : <code>aRandomFileName</code>.</li>
 
-<li>Can only start with a-z or A-Z or 0-9.</li>
+<li>The length range of a function or it's directory is between <code>6 - 30 Charecters</code>.</li>
 </ul>
 
 <h3 id="backendlesslogixanddirectories">Backendless Logix and Directories</h3>
 
 <ul>
-<li>Must be a-z or A-Z or 0-9.</li>
+<li>Name can only contain the following charecters: <code>a-z or A-Z or 0-9</code>.</li>
 
-<li>Cannot contain space or any other symbol.</li>
+<li>The prescribed naming convention is Camel Casing. Example : <code>aRandomFileName</code>.</li>
 
-<li>Can only start with a-z or A-Z or 0-9. No underscore allowed.</li>
+<li>The length range of a function or it's directory is between <code>6 - 30 Charecters</code>.</li>
 </ul>
+
+<h2 id="actioncommands">Action Commands</h2>
+
+<p>Action Commands are notation used to invoke a built-in module or feature provided for backendless logix or functions to aid in rapid development.</p>
+
+<h3 id="asterixthequeryinvoker">Asterix <code>(*)</code> - The Query Invoker</h3>
+
+<p>The asterix symbol is used to invoke a created query.</p>
+
+<h4 id="samplequerycalls">Sample Query Calls:</h4>
+
+<pre><code class="php language-php">$variableToStoreQuery = *queryToCall( 'name' , @age );
+</code></pre>
+
+<pre><code class="php language-php">$queryOneResult = *firstQueryToCall( 'name' , @age );
+$queryTwoResult = *secondQueryToCall( @userId , @dateOfBirth );
+</code></pre>
+
+<h4 id="rules">Rules:</h4>
+
+<ol>
+<li><p>Never nest a query call inside a query call. Support has not been given for this as it poses a readability issue, thus slowing down development speed.</p>
+
+<pre><code class="php language-php">Example Wrong Implementation:
+
+$v = *q1( *q2( ) );
+</code></pre>
+
+<pre><code class="php language-php">Example Correct Implementation:
+
+$a = *q1( @name ); 
+$v = *q2( $a );
+</code></pre></li>
+
+<li><p>Leave space between bracket and variable names inside the invoking query. </p>
+
+<pre><code class="php language-php">Example Bad usage:
+
+$v = *q1(@a,@b);
+</code></pre>
+
+<pre><code class="php language-php">Example Good usage:
+
+$v = *q1( @a , @b );
+</code></pre></li>
+</ol>
